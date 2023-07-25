@@ -14,6 +14,13 @@ body {
     box-shadow: 0 0 50px rgba(0,0,0,0.6);
 }
 
+.cancel {
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+    width: 30px;
+}
+
 .forms {
     position: fixed;
     left: 50%;
@@ -145,6 +152,15 @@ body {
     text-align: center;
 }
 
+.main-page-delete {
+    margin-top: -0.5vh;
+    margin-left: 90%;
+}
+
+.main-page-delete img {
+    width: 4vh;
+}
+
 #main-page-create {
     text-align: center;
     padding-top: 1vh;
@@ -182,13 +198,6 @@ body {
 
 .view-task h1 {
     text-align: center;
-}
-
-.view-task img{
-    position: absolute;
-    top: 2vh;
-    right: 2vh;
-    width: 30px;
 }
 
 #view-task-description {

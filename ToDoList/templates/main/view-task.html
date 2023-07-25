@@ -6,7 +6,7 @@
         <h1>{{ task.title }}</h1>
 
         <a href="{% url 'main:index' %}">
-            <img src="{% static 'img/cancel.png' %}" alt="cancel">
+            <img src="{% static 'img/cancel.png' %}" alt="cancel" class="cancel">
         </a>
         <hr>
         <div id="view-task-description">
@@ -20,7 +20,7 @@
                 Mark as not completed
             {% endif %}
         </a>
-        <a href="" id="view-task-edit">Edit task</a>
+        <a href="{% url 'main:edit-task' task_id=task.id %}" id="view-task-edit">Edit task</a>
         <a href="{% url 'main:delete-task' task_id=task.id %}" id="view-task-delete">Delete task</a>
     </div>
 {% endblock content %}

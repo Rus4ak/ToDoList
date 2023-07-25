@@ -20,6 +20,8 @@ def index(request):
     
 
 def create_task(request):
+    '''Create a task using form'''
+    
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = forms.TaskForm(request.POST)
@@ -77,7 +79,7 @@ def view_task(request, task_id):
 
 
 def delete_task(request, task_id):
-    '''Delete the task'''
+    '''Delete task'''
 
     try:
         task = models.Task.objects.get(id=task_id)
@@ -87,3 +89,32 @@ def delete_task(request, task_id):
     task.delete()
 
     return redirect('/')
+
+
+def edit_task(request, task_id):
+    '''Edit task'''
+
+    try:
+        task = models.Task.objects.get(id=task_id)
+    except:
+        HttpResponse('Error. Task not found')
+
+    if request.method == 'POST':
+        # Take new values
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        # Save new values
+        task.title = title
+        task.description = description
+
+        task.save()
+
+        return redirect('main:view-task', task_id=task_id)
+
+    else:
+        context = {
+            'task': task
+        }
+
+        return render(request, 'main/edit-task.html', context)

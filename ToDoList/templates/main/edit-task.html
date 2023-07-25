@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <a href="{% url 'main:view-task' task_id=task.id %}">
+        <img src="{% static 'img/cancel.png' %}" alt="cancel" class="cancel">
+    </a>
+
+    <div class="forms">
+        <h1>Edit task</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="title" value="{{ task.title }}">
+            <textarea name="description" cols="30" rows="10">{{ task.description }}</textarea>
+            <button type="submit">Edit</button>
+        </form>
+    </div>
+{% endblock content %}

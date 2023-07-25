@@ -17,6 +17,13 @@
                                 </button>
                             </form>
 
+                            <form action="{% url 'main:delete-task' task_id=task.id %}" method="post" class="main-page-delete">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <img src="{% static 'img/delete.png' %}" alt="delete">
+                                </button>
+                            </form>
+
                             <h2>{{ task.title }}</h2>
                             <h3>{{ task.description }}</h3>
                         </div>
@@ -32,6 +39,13 @@
                                 {% csrf_token %}
                                 <button type="submit">
                                     <img src="{% static 'img/mark-true.png' %}" alt="completed">
+                                </button>
+                            </form>
+
+                            <form action="{% url 'main:delete-task' task_id=task.id %}" method="post" class="main-page-delete">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <img src="{% static 'img/delete.png' %}" alt="delete">
                                 </button>
                             </form>
                             
