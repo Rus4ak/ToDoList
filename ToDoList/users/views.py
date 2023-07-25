@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
+from django.views.generic.base import View
 
 from .forms import RegisterForm
 
@@ -30,4 +31,10 @@ class Login(FormView):
 
         login(self.request, self.user)
         return super(Login, self).form_valid(form)
+    
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return redirect('main:index')
     

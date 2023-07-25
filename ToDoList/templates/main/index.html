@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main-page">
+        <h1>To Do List</h1>
+        <hr>
+        <div class="to-do-list">
+            {% for task in tasks %}
+                {% if not task.mark %}
+                    <a href="{% url 'main:view-task' task_id=task.id %}">
+                        <div class="main-page-tasks-false">
+                            <form action="{% url 'main:mark-done' task_id=task.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <img src="{% static 'img/mark-false.png' %}" alt="not completed">
+                                </button>
+                            </form>
+
+                            <h2>{{ task.title }}</h2>
+                            <h3>{{ task.description }}</h3>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+                
+            {% for task in tasks %}
+                {% if task.mark %}
+                    <a href="{% url 'main:view-task' task_id=task.id %}">
+                        <div class="main-page-tasks-true">
+                            <form action="{% url 'main:mark-done' task_id=task.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <img src="{% static 'img/mark-true.png' %}" alt="completed">
+                                </button>
+                            </form>
+                            
+                            <h2>{{ task.title }}</h2>
+                            <h3>{{ task.description }}</h3>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <a href="{% url 'main:create-task' %}" id="main-page-create">Create a new task</a>
+        <a href="{% url 'users:logout' %}" id="main-page-logout">Log out</a>
+    </div>
+{% endblock content %}

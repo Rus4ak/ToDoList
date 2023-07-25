@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="view-task">
+        <h1>{{ task.title }}</h1>
+
+        <a href="{% url 'main:index' %}">
+            <img src="{% static 'img/cancel.png' %}" alt="cancel">
+        </a>
+        <hr>
+        <div id="view-task-description">
+            <h2>{{ task.description }}</h2>
+        </div>
+
+        <a href="{% url 'main:mark-done' task_id=task.id %}" id="view-task-mark-done">
+            {% if not task.mark %}
+                Mark as completed
+            {% else %}
+                Mark as not completed
+            {% endif %}
+        </a>
+        <a href="" id="view-task-edit">Edit task</a>
+        <a href="" id="view-task-delete">Delete task</a>
+    </div>
+{% endblock content %}

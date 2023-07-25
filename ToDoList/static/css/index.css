@@ -14,17 +14,17 @@ body {
     box-shadow: 0 0 50px rgba(0,0,0,0.6);
 }
 
-.authorization {
+.forms {
     position: fixed;
     left: 50%;
     transform: translate(-50%, 0);
 }
 
-.authorization h1 {
+.forms h1 {
     text-align: center;
 }
 
-.authorization input {
+.forms input {
     color: #303030;
     height: 5vh;
     width: 50vh;
@@ -32,7 +32,16 @@ body {
     font-size: 25px;
 }
 
-.authorization label {
+.forms textarea {
+    resize: none;
+    outline: none;
+    width: 50.2vh;
+    height: 20vh;
+    margin-top: 2vh;
+    font-size: 20px;
+}
+
+.forms label {
     position: absolute;
     color: #303030;
     opacity: 0.8;
@@ -42,12 +51,14 @@ body {
     pointer-events: none;
 }
 
-.authorization input:focus + label,
-.authorization input:valid + label {
+.forms input:focus + label,
+.forms input:valid + label,
+.forms textarea:focus + label,
+.forms textarea:valid + label {
     display: none;
 }
 
-.authorization button {
+.forms button {
     background: rgb(220, 220, 220);
     border: 1px solid black;
     border-radius: 5px;
@@ -62,8 +73,181 @@ body {
     outline: none;
 }
 
-.authorization h2 {
+.forms h2 {
     margin-top: -4vh;
     font-weight: 100;
     font-size: 18px;
+}
+
+.to-do-list {
+    position: fixed;
+    height: 75%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.to-do-list a {
+    text-decoration: none;
+}
+
+.to-do-list img {
+    margin-top: 1vh;
+    margin-left: 1vh;
+    width: 6vh;
+    cursor: pointer;
+}
+
+.to-do-list button {
+    position: absolute;
+    background: none;
+    border: none;
+}
+
+.to-do-list h2 {
+    color: #303030;
+    margin-top: 0.5vh;
+    margin-left: 8.5vh;
+}
+
+.to-do-list h3 {
+    color: #303030;
+    font-weight: 100;
+    margin-top: -2.5vh;
+    margin-left: 8.5vh;
+    width: 70%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.main-page-tasks-false {
+    background: rgb(240, 240, 240);
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 92%;
+    height: 8vh;
+    margin-top: 2vh;
+    margin-left: 2vh;
+}
+
+.main-page-tasks-true {
+    opacity: 0.7;
+    background: rgb(240, 240, 240);
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 92%;
+    height: 8vh;
+    margin-top: 2vh;
+    margin-left: 2vh;
+}
+
+.main-page h1 {
+    text-align: center;
+}
+
+#main-page-create {
+    text-align: center;
+    padding-top: 1vh;
+    height: 5vh;
+    width: 27vh;
+    background: rgb(200, 200, 200);
+    border: 1px solid black;
+    border-radius: 10px;
+    position: absolute;
+    left: 2vh;
+    bottom: 2vh;
+    font-size: 24px;
+    text-decoration: none;
+    color: #303030;
+}
+
+#main-page-create:hover {
+    background: rgb(180, 180, 180);
+    color: #505050;
+    border: 1px solid #303030
+}
+
+#main-page-logout {
+    position: absolute;
+    right: 2vh;
+    bottom: 2vh;
+    font-size: 24px;
+    text-decoration: none;
+    color: #303030;
+}
+
+#main-page-logout:hover {
+    color: #707070;
+}
+
+.view-task h1 {
+    text-align: center;
+}
+
+.view-task img{
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+    width: 30px;
+}
+
+#view-task-description {
+    position: fixed;
+    height: 75%;
+    overflow-y: scroll;
+}
+
+#view-task-description::-webkit-scrollbar {
+    width: 0; 
+}
+
+#view-task-description h2 {
+    margin-left: 2vh;
+    word-break: break-all;
+    width: 95%;
+}
+
+#view-task-mark-done {
+    position: absolute;
+    bottom: 2vh;
+    left: 2vh;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: rgb(240, 240, 240);
+    width: 21vh;
+    height: 4vh;
+    color: black;
+    text-align: center;
+    padding-top: 1vh;
+}
+
+#view-task-edit {
+    position: absolute;
+    bottom: 2vh;
+    left: 24.5vh;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: rgb(240, 240, 240);
+    width: 21vh;
+    height: 4vh;
+    color: black;
+    text-align: center;
+    padding-top: 1vh;
+}
+
+#view-task-delete {
+    position: absolute;
+    bottom: 2vh;
+    right: 2vh;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: rgb(240, 240, 240);
+    width: 21vh;
+    height: 4vh;
+    color: black;
+    text-align: center;
+    padding-top: 1vh;
 }

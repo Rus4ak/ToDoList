@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="forms">
-        <h1>Sign up</h1>
+        <h1>Create a new task</h1>
         <form method="post">
             {% csrf_token %}
             {% for field in form %}
@@ -10,14 +10,9 @@
                     {{ field }}
                     <label>{{ field.label }}</label>
                 </div>
-                
-                {% if field.errors %}
-                    {{ field.errors }}
-                {% endif %}
             {% endfor %}
 
-            <button type="submit">Sign up</button>
-            <h2>Have an account? <a href="{% url 'users:login' %}">Log in</a></h2>
+            <button type="submit">Create</button>
         </form>
     </div>
-{% endblock content %}
+{% endblock %}
