@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponseNotFound
 
 from . import forms, models
 
@@ -41,80 +41,108 @@ def create_task(request):
 
             return render(request, 'main/create_task.html', context)
     else:
-        return HttpResponse('Error - User is not authorized')
+        return HttpResponseNotFound()
     
 
 def mark_done(request, task_id):
     ''' mark the task as completed, 
         or not completed if it is already marked as completed'''
 
-    try:
-        task = models.Task.objects.get(id=task_id)
-    except:
-        return HttpResponse('Error. Task not found')
-    
-    if not task.mark: # Checking if a task is marked as completed
-        task.mark = True
-    else:
-        task.mark = False
-    
-    task.save() # Change task status
+    if request.user.is_authenticated:
+        try:
+            task = models.Task.objects.get(id=task_id)
+        except:
+            return HttpResponseNotFound()
+        
+        if task.user == request.user:
+            if not task.mark: # Checking if a task is marked as completed
+                task.mark = True
+            else:
+                task.mark = False
+            
+            task.save() # Change task status
 
-    return redirect(request.META.get('HTTP_REFERER'))
+            return redirect(request.META.get('HTTP_REFERER'))
+        
+        else:
+            return HttpResponseNotFound()
+    else:
+        return HttpResponseNotFound()
 
 
 def view_task(request, task_id):
     '''View the task in more detail'''
 
-    try:
-        task = models.Task.objects.get(id=task_id)
-    except:
-        return HttpResponse('Error. Task not found')
-    
-    context = {
-        'task': task
-    }
+    if request.user.is_authenticated:
+        try:
+            task = models.Task.objects.get(id=task_id)
+        except:
+            return HttpResponseNotFound()
+        
+        if task.user == request.user:
+            context = {
+                'task': task
+            }
 
-    return render(request, 'main/view-task.html', context)
+            return render(request, 'main/view-task.html', context)
+
+        else:
+            return HttpResponseNotFound()
+
+    else:
+        return redirect('users:login')
 
 
 def delete_task(request, task_id):
     '''Delete task'''
 
-    try:
-        task = models.Task.objects.get(id=task_id)
-    except:
-        return HttpResponse('Error. Task not found')
-    
-    task.delete()
-
-    return redirect('/')
+    if request.user.is_authenticated:
+        try:
+            task = models.Task.objects.get(id=task_id)
+        except:
+            return HttpResponseNotFound()
+        
+        if task.user == request.user:
+            task.delete()
+            return redirect('/')
+        
+        else:
+            return HttpResponseNotFound()
+    else:
+        return HttpResponseNotFound()
 
 
 def edit_task(request, task_id):
     '''Edit task'''
 
-    try:
-        task = models.Task.objects.get(id=task_id)
-    except:
-        HttpResponse('Error. Task not found')
+    if request.user.is_authenticated:
+        try:
+            task = models.Task.objects.get(id=task_id)
+        except:
+            HttpResponseNotFound()
 
-    if request.method == 'POST':
-        # Take new values
-        title = request.POST.get('title')
-        description = request.POST.get('description')
+        if task.user == request.user:
+            if request.method == 'POST':
+                # Take new values
+                title = request.POST.get('title')
+                description = request.POST.get('description')
 
-        # Save new values
-        task.title = title
-        task.description = description
+                # Save new values
+                task.title = title
+                task.description = description
 
-        task.save()
+                task.save()
 
-        return redirect('main:view-task', task_id=task_id)
+                return redirect('main:view-task', task_id=task_id)
 
+            else:
+                context = {
+                    'task': task
+                }
+
+                return render(request, 'main/edit-task.html', context)
+    
+        else:
+            return HttpResponseNotFound()
     else:
-        context = {
-            'task': task
-        }
-
-        return render(request, 'main/edit-task.html', context)
+        return HttpResponseNotFound()
