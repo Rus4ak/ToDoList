@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="authorization">
+        <h1>Log in</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    {{ field }}
+                    <label>{{ field.label }}</label>
+                </div>
+            {% endfor %}
+
+            {% if form.errors %}
+                <ul>
+                    <li>The username or password is incorrect</li>
+                </ul>
+            {% endif %}
+
+            <button type="submit">Log in</button>
+            <h2>Don't have an account? <a href="{% url 'users:signup' %}">Sign up</a></h2>
+        </form>
+    </div>
+{% endblock content %}

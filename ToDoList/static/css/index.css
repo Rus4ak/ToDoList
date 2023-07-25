@@ -1,0 +1,69 @@
+body {
+    background: #a6a6a6;
+}
+
+.main {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 90vh;
+    width: 70vh;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.6);
+}
+
+.authorization {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.authorization h1 {
+    text-align: center;
+}
+
+.authorization input {
+    color: #303030;
+    height: 5vh;
+    width: 50vh;
+    margin-top: 2vh;
+    font-size: 25px;
+}
+
+.authorization label {
+    position: absolute;
+    color: #303030;
+    opacity: 0.8;
+    font-size: 23px;
+    margin-top: 3vh;
+    margin-left: -50vh;
+    pointer-events: none;
+}
+
+.authorization input:focus + label,
+.authorization input:valid + label {
+    display: none;
+}
+
+.authorization button {
+    background: rgb(220, 220, 220);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: #303030;
+    width: 16vh;
+    margin-top: 2vh;
+    margin-left: 35vh;
+    cursor: pointer;
+    font-family: 'Caveat', sans-serif;
+    font-size: 18px;
+    padding: 6px 28px;
+    outline: none;
+}
+
+.authorization h2 {
+    margin-top: -4vh;
+    font-weight: 100;
+    font-size: 18px;
+}
