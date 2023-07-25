@@ -74,3 +74,16 @@ def view_task(request, task_id):
     }
 
     return render(request, 'main/view-task.html', context)
+
+
+def delete_task(request, task_id):
+    '''Delete the task'''
+
+    try:
+        task = models.Task.objects.get(id=task_id)
+    except:
+        return HttpResponse('Error. Task not found')
+    
+    task.delete()
+
+    return redirect('/')

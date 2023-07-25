@@ -21,6 +21,6 @@
             {% endif %}
         </a>
         <a href="" id="view-task-edit">Edit task</a>
-        <a href="" id="view-task-delete">Delete task</a>
+        <a href="{% url 'main:delete-task' task_id=task.id %}" id="view-task-delete">Delete task</a>
     </div>
 {% endblock content %}
