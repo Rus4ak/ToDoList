@@ -11,8 +11,8 @@
 
         <form method="post">
             {% csrf_token %}
-            <input type="text" name="title" value="{{ task.title }}">
-            <textarea name="description" cols="30" rows="10">{{ task.description }}</textarea>
+            <input type="text" name="title" value="{{ task.title }}" maxlength="20" required>
+            <textarea name="description" cols="30" rows="10" required>{{ task.description }}</textarea>
             <button type="submit">Edit</button>
         </form>
     </div>

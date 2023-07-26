@@ -41,7 +41,7 @@ def create_task(request):
 
             return render(request, 'main/create_task.html', context)
     else:
-        return HttpResponseNotFound()
+        return redirect('users:login')
     
 
 def mark_done(request, task_id):
@@ -67,7 +67,7 @@ def mark_done(request, task_id):
         else:
             return HttpResponseNotFound()
     else:
-        return HttpResponseNotFound()
+        return redirect('users:login')
 
 
 def view_task(request, task_id):
@@ -109,7 +109,7 @@ def delete_task(request, task_id):
         else:
             return HttpResponseNotFound()
     else:
-        return HttpResponseNotFound()
+        return redirect('users:login')
 
 
 def edit_task(request, task_id):
@@ -119,7 +119,7 @@ def edit_task(request, task_id):
         try:
             task = models.Task.objects.get(id=task_id)
         except:
-            HttpResponseNotFound()
+            return HttpResponseNotFound()
 
         if task.user == request.user:
             if request.method == 'POST':
@@ -145,4 +145,4 @@ def edit_task(request, task_id):
         else:
             return HttpResponseNotFound()
     else:
-        return HttpResponseNotFound()
+        return redirect('users:login')

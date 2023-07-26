@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+    <a href="{% url 'main:index' %}">
+        <img src="{% static 'img/cancel.png' %}" alt="cancel" class="cancel">
+    </a>
+
     <div class="forms">
         <h1>Create a new task</h1>
         <form method="post">
