@@ -94,8 +94,6 @@ def view_task(request, task_id):
 
 
 def delete_task(request, task_id):
-    '''Delete task'''
-
     if request.user.is_authenticated:
         try:
             task = models.Task.objects.get(id=task_id)
@@ -113,8 +111,6 @@ def delete_task(request, task_id):
 
 
 def edit_task(request, task_id):
-    '''Edit task'''
-
     if request.user.is_authenticated:
         try:
             task = models.Task.objects.get(id=task_id)
