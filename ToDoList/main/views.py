@@ -7,7 +7,7 @@ from . import forms, models
 
 def index(request):
     if request.user.is_authenticated:
-        tasks = models.Task.objects.filter(user = request.user)
+        tasks = models.Task.objects.filter(user=request.user)
 
         context = {
             'tasks': tasks
